@@ -30,7 +30,7 @@ pipeline {
 		   stage('Build Docker Image') { 
 			steps {
 	                   script {
-	                    hello-web = docker.build("vrvasanthkumar/kube8s:${env.BUILD_ID}") 
+	                    myapp = docker.build("vrvasanthkumar/kube8s:${env.BUILD_ID}") 
 	                   }
 	                }
 		   }
@@ -39,7 +39,7 @@ pipeline {
 	                   script {
 	                    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
 	/* docker.withRegistry('https://gcr.io', 'gcr-devops') {*/
-	                            hello-web.push("${env.BUILD_ID}")		
+	                            myapp.push("${env.BUILD_ID}")		
 	                     }
 				
 	                   }
