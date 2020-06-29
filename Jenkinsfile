@@ -39,7 +39,7 @@ pipeline {
 	                   script {
 	                    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
 	/* docker.withRegistry('https://gcr.io', 'gcr-devops') {*/
-	                            myimage.push("${env.BUILD_ID}")		
+	                            hello-web.push("${env.BUILD_ID}")		
 	                     }
 				
 	                   }
