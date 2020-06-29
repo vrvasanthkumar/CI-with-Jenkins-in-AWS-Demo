@@ -5,7 +5,6 @@ pipeline {
 		CLUSTER_NAME = 'my-first-cluster-1'
 		LOCATION = 'europe-north1-a' 
 		CREDENTIALS_ID = 'kubernetes' 
-			
 		}
 		
 	    stages {	
@@ -14,7 +13,7 @@ pipeline {
 	                  checkout scm
 			}	
 	           }
-	
+	           
 		   stage('Build') { 
 	                steps {
 	                  echo "Cleaning and packaging..."
@@ -30,22 +29,21 @@ pipeline {
 		   stage('Build Docker Image') { 
 			steps {
 	                   script {
-	                    myapp = docker.build("vrvasanthkumar/kube8s:${env.BUILD_ID}") 
+	                      myapp = docker.build("vrvasanthkumar/kube8s:${env.BUILD_ID}")
 	                   }
 	                }
 		   }
 		   stage("Push Docker Image") {
 	                steps {
 	                   script {
-	                    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
-	/* docker.withRegistry('https://gcr.io', 'gcr-devops') {*/
+			      docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
 	                            myapp.push("${env.BUILD_ID}")		
 	                     }
-				
+				   
 	                   }
 	                }
 	            }
-		
+		   
 	           stage('Deploy to K8s') { 
 	                steps{
 	                   echo "Deployment started ..."
