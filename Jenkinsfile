@@ -1,7 +1,8 @@
 pipeline {
 	    agent any 	
 		environment {
-		PROJECT_ID = 'my first project'
+		//PROJECT_ID = 'my first project'
+		PROJECT_ID = 'kubernetes'
 		CLUSTER_NAME = 'my-first-cluster-1'
 		LOCATION = 'europe-north1-a' 
 		CREDENTIALS_ID = 'kubernetes' 
