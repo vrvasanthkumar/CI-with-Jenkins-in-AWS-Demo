@@ -32,5 +32,5 @@ spec:
     app: myapp1
   ports:
     - protocol: TCP
-      port: 80
+      port: 6655
       targetPort: 8080
