@@ -11,7 +11,7 @@ spec:
   matchLabels:
    app: myapp1
  template:
-  metadata: 
+  metadata:
    labels:
     app: myapp1
   spec:
