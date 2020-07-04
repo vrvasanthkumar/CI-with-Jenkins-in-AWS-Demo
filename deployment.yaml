@@ -2,34 +2,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: webapp1
-spec:
- replicas: 2
- selector:
- matchLabels:
- app: webapp1 
- template:
- metadata:
+ name: myapp1
  labels:
- app: webapp1
- spec:
- containers:
- - name: webapp1
- image: vrvasanthkumar/kube8s:tagversion
- ports:
- - containerPort: 8080
+  app: myapp1
+spec:
+ replicas: 1
+ selector:
+  matchLabels:
+   app: myapp1
+ template:
+  metadata:
+   labels:
+    app: myapp1
+  spec:
+   containers:
+   - name: myapp1
+     image: vrvasanthkumar/kube8s:tagversion
+     ports:
+     - containerPort: 8080
+
 ---
 apiVersion: v1
 kind: Service
 metadata:
- name: webapp1-svc
- labels:
- app: webapp1
+  name: myapp1
 spec:
- type: LoadBalancer
- ports:
- - protocol: TCP
- port: 80
- targetPort: 8080
- selector:
- app: webapp1
+  type: LoadBalancer
+  selector:
+    app: myapp1
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
